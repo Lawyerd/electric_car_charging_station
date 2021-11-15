@@ -5,6 +5,19 @@ import icon_combo from "../icon/combo.png";
 import icon_bc from "../icon/bctype.png";
 
 function Detail({ name, address, chargers }) {
+  const cnt_type10 = chargers.reduce(
+    (cnt, element) => cnt + (10 === element.cpTp),
+    0
+  );
+  const cnt_type7 = chargers.reduce(
+    (cnt, element) => cnt + (7 === element.cpTp),
+    0
+  );
+  const cnt_type3 = chargers.reduce(
+    (cnt, element) => cnt + (3 === element.cpTp),
+    0
+  );
+
   return (
     <div
       className="position-absolute w-75"
@@ -35,11 +48,13 @@ function Detail({ name, address, chargers }) {
                 </p>
               </Row>
               <Row>
-                <p className="d-flex justify-content-center">2분</p>
+                <p className="d-flex justify-content-center">N분</p>
               </Row>
             </Col>
             <Col>
-              <Row className="d-flex justify-content-center">차데모</Row>
+              <Row className="d-flex justify-content-center">
+                차데모 {cnt_type10}개
+              </Row>
               <Row className="d-flex justify-content-center">
                 <div className="d-flex justify-content-center">
                   <img src={icon_chademo} width="30" alt="chademo"></img>
@@ -47,15 +62,19 @@ function Detail({ name, address, chargers }) {
               </Row>
             </Col>
             <Col>
-              <Row className="d-flex justify-content-center">DC콤보</Row>
+              <Row className="d-flex justify-content-center">
+                DC콤보 {cnt_type7}개
+              </Row>
               <Row>
                 <div className="d-flex justify-content-center">
-                  <img src={icon_combo} width="30"  alt="combo"></img>
+                  <img src={icon_combo} width="30" alt="combo"></img>
                 </div>
               </Row>
             </Col>
-             <Col>
-              <Row className="d-flex justify-content-center">BC타입</Row>
+            <Col>
+              <Row className="d-flex justify-content-center">
+                BC타입{cnt_type3}개
+              </Row>
               <Row className="d-flex justify-content-center">
                 <div className="d-flex justify-content-center">
                   <img src={icon_bc} width="30" alt="bc"></img>

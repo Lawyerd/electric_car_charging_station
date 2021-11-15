@@ -36,16 +36,16 @@ function SearchBar({ return_station, getStation }) {
   ];
 
   const charger_options = [
-    {id:1,name: "B타입(5핀)"},
-    {id:2,name: "C타입(5핀)"},
-    {id:3,name: "BC타입(5핀)"},
-    {id:4,name: "BC타입(7핀)"},
-    {id:5,name: "DC차데모"},
-    {id:6,name:" AC3상"},
-    {id:7,name: "DC콤보"},
-    {id:8,name: "DC차데모 + DC콤보"},
-    {id:9,name: "DC차데모 + AC3상"},
-    {id:10,name: "DC차데모 + DC콤보 + AC3상"},
+    { id: 1, name: "B타입(5핀)" },
+    { id: 2, name: "C타입(5핀)" },
+    { id: 3, name: "BC타입(5핀)" },
+    { id: 4, name: "BC타입(7핀)" },
+    { id: 5, name: "DC차데모" },
+    { id: 6, name: " AC3상" },
+    { id: 7, name: "DC콤보" },
+    { id: 8, name: "DC차데모 + DC콤보" },
+    { id: 9, name: "DC차데모 + AC3상" },
+    { id: 10, name: "DC차데모 + DC콤보 + AC3상" },
   ];
 
   const [searchedName, setSearchedName] = useState("");
@@ -67,16 +67,14 @@ function SearchBar({ return_station, getStation }) {
   };
   const onRemoveLocation = (selectedList, removedItem) => {
     setLocation(selectedList);
-
   };
   const onRemoveCharger = (selectedList, removedItem) => {
     setCharger(selectedList);
-
   };
 
   const handleChange = event => {
     var { value } = event.target;
-    setSearchedName(value)
+    setSearchedName(value);
   };
 
   const handleSubmit = async event => {
@@ -86,13 +84,22 @@ function SearchBar({ return_station, getStation }) {
     await new Promise(r => setTimeout(r, 1000));
   };
 
-  useEffect(async() =>{
-    const res_data = await axios.get(
-          query_string + "type=1&option=서울"
-        );
+  const isHaveCharger = (charger_station, target_types) => {
+    for (const charger of charger_station.info) {
+      for (const target_type of target_types) {
+        if (charger.cpTp === target_type.id) {
+          return true;
+        }
+      }
+    }
+    return false;
+  };
+
+  useEffect(async () => {
+    const res_data = await axios.get(query_string + "type=1&option=서울");
     const data = res_data.data.station;
     setAllStations(data);
-  },[query_string])
+  }, [query_string]);
 
   useEffect(() => {
     console.log("stations이 변경되었음으로 SearchBar에서 Map으로 전달");
@@ -106,31 +113,39 @@ function SearchBar({ return_station, getStation }) {
         setSubmitting(false);
         alert("Searching!");
         let filterd_array = allStations;
-        console.log("start filtering")
-        if(selected_location.length>0){
-          let location_filterd = []
-          for (const location of selected_location){
-          location_filterd.push(...filterd_array.filter(station => 
-          station.addr.includes(location.name)))
+        console.log("start filtering");
+        console.log(filterd_array);
+        if (selected_location.length > 0) {
+          let location_filterd = [];
+          for (const location of selected_location) {
+            location_filterd.push(
+              ...filterd_array.filter(station =>
+                station.addr.includes(location.name)
+              )
+            );
           }
-          filterd_array = location_filterd
-        }
-        
-        if(selected_charger.length>0){
-          let charger_filterd = []
-          for (const charger of selected_charger){
-          charger_filterd.push(...filterd_array.filter(station => 
-          station.cpTp===charger.id))
-          }
-          filterd_array = charger_filterd
+          filterd_array = location_filterd;
         }
 
-        if(searchedName.length>0){
-          console.log(searchedName);
-          filterd_array = filterd_array.filter(station => 
-          station.csNm.includes(searchedName))
+        if (selected_charger.length > 0) {
+          let charger_filterd = [];
+
+          charger_filterd.push(
+            ...filterd_array.filter(station =>
+              isHaveCharger(station, selected_charger)
+            )
+          );
+
+          filterd_array = charger_filterd;
         }
-        console.log(filterd_array)
+
+        if (searchedName.length > 0) {
+          console.log(searchedName);
+          filterd_array = filterd_array.filter(station =>
+            station.csNm.includes(searchedName)
+          );
+        }
+        console.log(filterd_array);
         setStations(filterd_array);
         setSuccess(true);
       } else {
@@ -138,7 +153,15 @@ function SearchBar({ return_station, getStation }) {
         setSubmitting(false);
       }
     }
-  }, [submitting, errors, stations, allStations, selected_charger, selected_location]);
+  }, [
+    searchedName,
+    submitting,
+    errors,
+    stations,
+    allStations,
+    selected_charger,
+    selected_location,
+  ]);
 
   return (
     <div

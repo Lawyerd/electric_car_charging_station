@@ -9,16 +9,18 @@ function Map() {
   const markers = [];
   const [station, setStation] = useState({
     addr: "",
-    chargeTp: 0,
-    cpId: 0,
-    cpNm: "",
-    cpStat: 0,
-    cpTp: 0,
-    csId: 0,
-    csNm: "",
     lat: 0,
     longi: 0,
-    statUpdateDatetime: "",
+    csNm: "",
+    csId: 0,
+    info: [
+      {
+        chargeTp: 0,
+        cpId: 0,
+        cpNm: "",
+        cpTp: 0,
+      },
+    ],
   });
   const stationToMarker = station => {
     return (
@@ -82,7 +84,11 @@ function Map() {
         ></SearchBar>
 
         {isSelected ? (
-          <Detail name={station.csNm} address={station.addr} />
+          <Detail
+            name={station.csNm}
+            address={station.addr}
+            chargers={station.info}
+          />
         ) : (
           <div />
         )}
