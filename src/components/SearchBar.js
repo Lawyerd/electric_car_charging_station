@@ -6,6 +6,7 @@ import axios from "axios";
 
 function SearchBar({ return_station, getStation }) {
   const query_string = base_url;
+  // const query_sstring = "http://sub.dev-whoan.xyz/expect?time=2144&weather=1";
 
   const location_options = [
     { name: "서울특별시 강남구", id: 1 },
@@ -96,10 +97,20 @@ function SearchBar({ return_station, getStation }) {
   };
 
   useEffect(async () => {
-    const res_data = await axios.get(query_string + "type=1&option=서울");
-    const data = res_data.data.station;
+    const res_data = await axios.get(query_string);
+    console.log(res_data);
+
+    const data = res_data.data.stations;
+    console.log("alldata");
+    console.log(data);
     setAllStations(data);
   }, [query_string]);
+
+  // useEffect(async () => {
+  //   const res_data = await axios.get(query_sstring);
+  //   console.log("tt");
+  //   console.log(res_data);
+  // }, [query_sstring]);
 
   useEffect(() => {
     console.log("stations이 변경되었음으로 SearchBar에서 Map으로 전달");

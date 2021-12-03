@@ -19,6 +19,7 @@ function Map() {
         cpId: 0,
         cpNm: "",
         cpTp: 0,
+        cpStat: 1,
       },
     ],
   });
@@ -42,7 +43,7 @@ function Map() {
   const [isSelected, setIsSelected] = useState(false);
   const getStations = stations => {
     console.log("stations 부모로 가져옴");
-    console.log(stations);
+    // console.log(stations);
     setStations(stations);
     setIsLoading(false);
     stations.forEach(station => {
@@ -87,7 +88,9 @@ function Map() {
           <Detail
             name={station.csNm}
             address={station.addr}
+            location={[station.lat, station.longi]}
             chargers={station.info}
+            expected_time={0}
           />
         ) : (
           <div />
