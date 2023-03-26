@@ -1,70 +1,47 @@
-# Getting Started with Create React App
+# 전기차 충전소 현황 웹 어플리케이션
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+이 어플리케이션은 한국 공공데이터포털에서 제공하는 실시간 전기차 충전소 데이터를 API를 통해 받아와서 Naver Map API를 사용하여 전기차 충전소 현황을 보여주는 웹 어플리케이션입니다.
 
-## Available Scripts
+## 기술 스택
 
-In the project directory, you can run:
+- React
+- Bootstrap
+- Axios
+- Naver Map API
+- React Router DOM
+- Multiselect React Dropdown
+## 설치 방법
 
-### `npm start`
+1. Git 저장소를 클론합니다.
+```bash
+Copy code
+git clone https://github.com/[YOUR_USERNAME]/[YOUR_REPOSITORY_NAME].git
+```
+2. 프로젝트 폴더로 이동하여 필요한 패키지들을 설치합니다.
+```bash
+Copy code
+cd [YOUR_REPOSITORY_NAME]
+npm install
+```
+3. .env 파일을 생성하고 Naver Map API 키를 등록합니다.
+```css
+Copy code
+REACT_APP_NAVER_MAP_API_KEY=[YOUR_NAVER_MAP_API_KEY]
+```
+4. 어플리케이션을 실행합니다.
+```sql
+Copy code
+npm start
+```
+## 기능
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- 지도에서 충전소 위치 확인
+- 상세 정보 보기
+- 지역별, 충전기 종류별 검색
+## 데이터 출처
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+한국 공공데이터포털 - 전국 전기차 충전소 정보
 
-### `npm test`
+## 라이센스
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+이 프로젝트는 MIT 라이센스를 따릅니다. 자세한 내용은 LICENSE 파일을 확인하세요.
