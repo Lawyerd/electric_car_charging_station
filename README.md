@@ -15,17 +15,16 @@
 1. Git 저장소를 클론합니다.
 ```bash
 Copy code
-git clone https://github.com/[YOUR_USERNAME]/[YOUR_REPOSITORY_NAME].git
+git clone https://github.com/Lawyerd/electric_car_charging_station
 ```
 2. 프로젝트 폴더로 이동하여 필요한 패키지들을 설치합니다.
 ```bash
 Copy code
-cd [YOUR_REPOSITORY_NAME]
+cd https://github.com/Lawyerd/electric_car_charging_station
 npm install
 ```
 3. .env 파일을 생성하고 Naver Map API 키를 등록합니다.
 ```css
-Copy code
 REACT_APP_NAVER_MAP_API_KEY=[YOUR_NAVER_MAP_API_KEY]
 ```
 4. 어플리케이션을 실행합니다.
